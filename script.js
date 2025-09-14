@@ -1,38 +1,48 @@
-// Part 2: Functions with parameters, return values, and scope
+/* ================================
+   Part 2: JavaScript Functions
+   ================================ */
 
 // Global scope variable
 let animationCount = 0;
 
-// Function with parameter + return
+// Function with parameter + return value
 function incrementCount(by) {
   animationCount += by;
-  return animationCount;
+  return animationCount; // returns updated value
 }
 
-// Function to trigger animation
+// Function to trigger animation on an element
 function triggerAnimation(element) {
-  element.classList.remove("animate"); // reset
-  void element.offsetWidth; // hack to restart animation
+  element.classList.remove("animate"); // reset animation if already applied
+  void element.offsetWidth; // hack to restart CSS animation
   element.classList.add("animate");
-  console.log("Animation count:", incrementCount(1));
+  
+  // Log updated count using function with parameter
+  console.log("Animation triggered:", incrementCount(1));
 }
 
-// DOM elements
+/* ================================
+   Part 3: Combining CSS + JS
+   ================================ */
+
+// Get DOM elements
 const animatedBox = document.getElementById("animatedBox");
 const animateBtn = document.getElementById("animateBtn");
 const toggleModalBtn = document.getElementById("toggleModalBtn");
 const modal = document.getElementById("modal");
 const closeModalBtn = document.getElementById("closeModalBtn");
 
-// Event listeners
+// Event listener to animate the box when button is clicked
 animateBtn.addEventListener("click", () => {
   triggerAnimation(animatedBox);
 });
 
+// Event listener to toggle modal visibility
 toggleModalBtn.addEventListener("click", () => {
   modal.classList.toggle("hidden");
 });
 
+// Event listener to close modal
 closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
